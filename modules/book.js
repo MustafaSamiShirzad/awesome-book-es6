@@ -1,7 +1,7 @@
 const bookTitle = document.querySelector('.book-title');
 const authorName = document.querySelector('.author-name');
 const article = document.querySelector('.book-details');
-export class Book {
+class Book {
   constructor(title, author) {
     this.title = title;
     this.author = author;
@@ -18,19 +18,19 @@ export class Book {
   }
 
   // update method
-  updateLocalStorage() {
-    localStorage.setItem('bookArray', JSON.stringify(this.bookArray));
-  }
+   updateLocalStorage =() => {
+     localStorage.setItem('bookArray', JSON.stringify(this.bookArray));
+   }
 
   // remove method
-  removeBook(bookToRemove, obj) {
+  removeBook =(bookToRemove, obj) => {
     article.removeChild(bookToRemove);
     this.bookArray.splice(this.bookArray.indexOf(obj), 1);
     this.updateLocalStorage();
   }
 
   // display method
-  displayBookDetails(obj) {
+  displayBookDetails= (obj) => {
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book');
     if (this.bookArray.indexOf(obj) % 2 === 1) {
@@ -52,7 +52,7 @@ export class Book {
     });
   }
 
-  addBook() {
+  addBook=() => {
     const newBook = new Book(bookTitle.value, authorName.value);
     this.bookArray.push(newBook);
     this.displayBookDetails(newBook);
@@ -61,3 +61,5 @@ export class Book {
     this.updateLocalStorage();
   }
 }
+
+export { Book };
